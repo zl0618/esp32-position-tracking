@@ -4,9 +4,10 @@ ESP-NOW based wireless position tracking and communication system using XIAO ESP
 
 ## Features
 - Real-time position tracking using RSSI measurements
+- Signal smoothing to reduce distance fluctuations
 - Automatic device discovery and pairing
 - Data logging and visualization
-- Python monitoring interface with live plotting
+- Python monitoring interface
 
 ## Hardware Requirements
 - 2x Seeed Studio XIAO ESP32C6
@@ -24,11 +25,10 @@ ESP32/
 ```
 
 ## Setup Instructions
-1. Install Arduino IDE and ESP32 board package (v2.0.11+)
-2. Flash `esp_now_coordinator.ino` to first ESP32C6
-3. Flash `esp_now_enddevice.ino` to second ESP32C6
-4. Install Python dependencies: `pip install pyserial matplotlib`
-5. Run `python monitor.py` to monitor communication
+1. Flash `esp_now_coordinator.ino` to first ESP32C6
+2. Flash `esp_now_enddevice.ino` to second ESP32C6
+3. Run `python monitor.py` to monitor communication
+4. View real-time distance measurements and plots
 
 ## Usage
 ```bash
@@ -37,9 +37,7 @@ python monitor.py
 ```
 
 ## Distance Calculation
-Uses path-loss model: `distance = 10^((Tx_Power - RSSI)/(10*n))`
-- Calibrated for indoor environments
-- Typical accuracy: ±1-2 meters
-
-## License
-MIT License
+Uses enhanced path-loss model with environmental calibration:
+- RSSI smoothing with outlier detection
+- Distance smoothing using trimmed mean
+- Configurable path loss exponent for different environments

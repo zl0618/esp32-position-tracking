@@ -28,3 +28,14 @@ desktop.ini
 *.hex
 *.elf
 *.map
+
+# ESP32 build files
+build/
+*.bin
+*.bootloader.bin
+*.partitions.bin
+
+# Temporary files
+*.tmp
+*.bak
+*~
